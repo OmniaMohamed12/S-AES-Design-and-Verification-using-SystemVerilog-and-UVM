@@ -1,0 +1,604 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/keyexp
+=== Design Unit: work.Key_Expansion
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        17        17         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /S_AES_Top/encrypt/keyexp
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Key_Expansion.sv
+------------------------------------CASE Branch------------------------------------
+    19                                      2404     Count coming in to CASE
+    20              1                        163             4'b0000: S_Box=4'h9;
+    21              1                        134             4'b0001: S_Box=4'h4;
+    22              1                        160             4'b0010: S_Box=4'ha;
+    23              1                        130             4'b0011: S_Box=4'hb;
+    24              1                        144             4'b0100: S_Box=4'hd;
+    25              1                        139             4'b0101: S_Box=4'h1;
+    26              1                        141             4'b0110: S_Box=4'h8;
+    27              1                        131             4'b0111: S_Box=4'h5;
+    28              1                        168             4'b1000: S_Box=4'h6;
+    29              1                        164             4'b1001: S_Box=4'h2;
+    30              1                        160             4'b1010: S_Box=4'h0;
+    31              1                        162             4'b1011: S_Box=4'h3;
+    32              1                        150             4'b1100: S_Box=4'hc;
+    33              1                        132             4'b1101: S_Box=4'he;
+    34              1                        161             4'b1110: S_Box=4'hf;
+    35              1                        161             4'b1111: S_Box=4'h7;
+                                               4     All False Count
+Branch totals: 17 hits of 17 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      22        21         1    95.45%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/keyexp --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Key_Expansion.sv
+    8                                                module Key_Expansion(
+    9                                                    input  logic[15:0] key0,
+    10                                                   output logic[15:0] key1,
+    11                                                   output logic[15:0] key2);
+    12                                                   //wo=key0[16:8],w1=key0[7:0]
+    13                                                   logic [7:0] rcon1=8'h80;
+    14                                                   logic [7:0] rcon2=8'h30;
+    15                                                   function automatic logic[7:0] RotNib(input logic[7:0] w);
+    16              1                    ***0***             RotNib={w[3:0],w[7:4]};
+    17                                                   endfunction
+    18                                                   function automatic logic[3:0] S_Box(input logic[3:0] in_rot);
+    19                                                   case(in_rot)
+    20              1                        163             4'b0000: S_Box=4'h9;
+    21              1                        134             4'b0001: S_Box=4'h4;
+    22              1                        160             4'b0010: S_Box=4'ha;
+    23              1                        130             4'b0011: S_Box=4'hb;
+    24              1                        144             4'b0100: S_Box=4'hd;
+    25              1                        139             4'b0101: S_Box=4'h1;
+    26              1                        141             4'b0110: S_Box=4'h8;
+    27              1                        131             4'b0111: S_Box=4'h5;
+    28              1                        168             4'b1000: S_Box=4'h6;
+    29              1                        164             4'b1001: S_Box=4'h2;
+    30              1                        160             4'b1010: S_Box=4'h0;
+    31              1                        162             4'b1011: S_Box=4'h3;
+    32              1                        150             4'b1100: S_Box=4'hc;
+    33              1                        132             4'b1101: S_Box=4'he;
+    34              1                        161             4'b1110: S_Box=4'hf;
+    35              1                        161             4'b1111: S_Box=4'h7;
+    36                                                   endcase
+    37                                               endfunction:S_Box
+    38              1                        601         always_comb begin
+    39              1                        601             key1[15:8]=key0[15:8] ^ rcon1 ^ {S_Box(key0[3:0]),S_Box(key0[7:4])} ;
+    40              1                        601             key1[7:0]=  key1[15:8] ^ key0[7:0];
+    41              1                        601             key2[15:8]=key1[15:8] ^ rcon2 ^ {S_Box(key1[3:0]),S_Box(key1[7:4])} ;
+    42              1                        601             key2[7:0]=  key2[15:8] ^ key1[7:0];
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         64        64         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/keyexp --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                        key1[0-15]           1           1      100.00 
+                                        key2[0-15]           1           1      100.00 
+
+Total Node Count     =         32 
+Toggled Node Count   =         32 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (64 of 64 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/AddRoundKey0
+=== Design Unit: work.Add_Round_Key
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       4         4         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/AddRoundKey0 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Add_Round_Key.sv
+    8                                                module  Add_Round_Key(input logic [15:0] plain_text,input logic[15:0] key0,output logic [15:0] new_state);
+    9               1                        601         assign new_state[15:12]= plain_text[15:12] ^ key0[15:12];
+    10              1                        601         assign new_state[11:8]= plain_text[11:8] ^ key0[11:8];
+    11              1                        601         assign new_state[7:4]= plain_text[7:4] ^ key0[7:4];
+    12              1                        601         assign new_state[3:0]= plain_text[3:0] ^ key0[3:0];
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/AddRoundKey0 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   new_state[15-0]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/NibSub_round1
+=== Design Unit: work.Nibble_Substitution
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        17        17         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /S_AES_Top/encrypt/NibSub_round1
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Nibble_Substitution.sv
+------------------------------------CASE Branch------------------------------------
+    12                                      2404     Count coming in to CASE
+                                               4     All False Count
+Branch totals: 17 hits of 17 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      21        21         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/NibSub_round1 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Nibble_Substitution.sv
+    13              1                        164     
+    14              1                        155     
+    15              1                        163     
+    16              1                        128     
+    17              1                        171     
+    18              1                        151     
+    19              1                        134     
+    20              1                        132     
+    21              1                        135     
+    22              1                        149     
+    23              1                        147     
+    24              1                        175     
+    25              1                        158     
+    26              1                        158     
+    27              1                        154     
+    28              1                        126     
+    31              1                        601     
+    32              1                        601     
+    33              1                        601     
+    34              1                        601     
+    35              1                        601     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/NibSub_round1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   out_state[0-15]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/shift_round1
+=== Design Unit: work.Shift_Row
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       5         5         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/shift_round1 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Shift_Row.sv
+    9                                                module  Shift_Row(input logic[15:0] in_state,output logic[15:0] out_state);
+    10              1                        601         always_comb begin
+    11              1                        601             out_state[15:12]=in_state[15:12];
+    12              1                        601             out_state[11:8]=in_state[3:0];
+    13              1                        601             out_state[7:4]=in_state[7:4];
+    14              1                        601             out_state[3:0]=in_state[11:8];
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/shift_round1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   out_state[15-0]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/Mix_Columns_round1
+=== Design Unit: work.Mix_Columns
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         7         6         1    85.71%
+
+================================Branch Details================================
+
+Branch Coverage for instance /S_AES_Top/encrypt/Mix_Columns_round1
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Mix_Columns.sv
+------------------------------------IF Branch------------------------------------
+    15                                      2404     Count coming in to IF
+    15              1                        622             if(in[3:2]=='0)
+    17              1                       1230             else if( in[3]==1'b1)begin
+    24              1                        552             else  
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    19                                      1230     Count coming in to IF
+    19              1                       1230                 if(product[5]==1)
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    21                                      1230     Count coming in to IF
+    21              1                        589                 if(product[4]==1)
+                                             641     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      13        13         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/Mix_Columns_round1 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Mix_Columns.sv
+    10                                               module  Mix_Columns(input logic[15:0] in_state,output logic[15:0] out_state);
+    11                                                 
+    12                                                   function automatic logic[3:0] multiply_by_4(input logic[3:0] in);
+    13              1                       2404             logic[4:0] irreducible=5'b10011;
+    14              1                       2404             logic[7:0] product=in <<2;
+    15                                                       if(in[3:2]=='0)
+    16              1                        622                 product=product;
+    17                                                       else if( in[3]==1'b1)begin
+    18              1                       1230                 product = product ^ irreducible;
+    19                                                           if(product[5]==1)
+    20              1                       1230                     product = product ^ (irreducible<<1);
+    21                                                           if(product[4]==1)
+    22              1                        589                     product = product ^ irreducible;
+    23                                                       end
+    24                                                       else  
+    25              1                        552                 product= product ^ irreducible;
+    26              1                       2404             multiply_by_4=product[3:0];
+    27                                                   endfunction:multiply_by_4
+    28                                                 
+    29              1                        601         always_comb begin
+    30              1                        601             out_state[15:12]=in_state[15:12] ^ multiply_by_4(in_state[11:8]);
+    31              1                        601             out_state[11:8]=multiply_by_4(in_state[15:12]) ^ in_state[11:8];
+    32              1                        601             out_state[7:4]=in_state[7:4] ^ multiply_by_4(in_state[3:0]);
+    33              1                        601             out_state[3:0]=multiply_by_4(in_state[7:4]) ^ in_state[3:0];
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/Mix_Columns_round1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   out_state[0-15]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/AddRoundKey1
+=== Design Unit: work.Add_Round_Key
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       4         4         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/AddRoundKey1 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Add_Round_Key.sv
+    8                                                module  Add_Round_Key(input logic [15:0] plain_text,input logic[15:0] key0,output logic [15:0] new_state);
+    9               1                       1201         assign new_state[15:12]= plain_text[15:12] ^ key0[15:12];
+    10              1                       1201         assign new_state[11:8]= plain_text[11:8] ^ key0[11:8];
+    11              1                       1201         assign new_state[7:4]= plain_text[7:4] ^ key0[7:4];
+    12              1                       1201         assign new_state[3:0]= plain_text[3:0] ^ key0[3:0];
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/AddRoundKey1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   new_state[15-0]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/NibSub_round2
+=== Design Unit: work.Nibble_Substitution
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        17        17         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /S_AES_Top/encrypt/NibSub_round2
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Nibble_Substitution.sv
+------------------------------------CASE Branch------------------------------------
+    12                                      4800     Count coming in to CASE
+                                               4     All False Count
+Branch totals: 17 hits of 17 branches = 100.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      21        21         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/NibSub_round2 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Nibble_Substitution.sv
+    13              1                        301     
+    14              1                        297     
+    15              1                        299     
+    16              1                        282     
+    17              1                        307     
+    18              1                        280     
+    19              1                        276     
+    20              1                        308     
+    21              1                        310     
+    22              1                        298     
+    23              1                        319     
+    24              1                        308     
+    25              1                        304     
+    26              1                        328     
+    27              1                        294     
+    28              1                        285     
+    31              1                       1200     
+    32              1                       1200     
+    33              1                       1200     
+    34              1                       1200     
+    35              1                       1200     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/NibSub_round2 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   out_state[0-15]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/shift_round2
+=== Design Unit: work.Shift_Row
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       5         5         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/shift_round2 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Shift_Row.sv
+    9                                                module  Shift_Row(input logic[15:0] in_state,output logic[15:0] out_state);
+    10              1                       1200         always_comb begin
+    11              1                       1200             out_state[15:12]=in_state[15:12];
+    12              1                       1200             out_state[11:8]=in_state[3:0];
+    13              1                       1200             out_state[7:4]=in_state[7:4];
+    14              1                       1200             out_state[3:0]=in_state[11:8];
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/shift_round2 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   out_state[15-0]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt/AddRoundKey2
+=== Design Unit: work.Add_Round_Key
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       4         4         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt/AddRoundKey2 --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File Add_Round_Key.sv
+    8                                                module  Add_Round_Key(input logic [15:0] plain_text,input logic[15:0] key0,output logic [15:0] new_state);
+    9               1                       1800         assign new_state[15:12]= plain_text[15:12] ^ key0[15:12];
+    10              1                       1800         assign new_state[11:8]= plain_text[11:8] ^ key0[11:8];
+    11              1                       1800         assign new_state[7:4]= plain_text[7:4] ^ key0[7:4];
+    12              1                       1800         assign new_state[3:0]= plain_text[3:0] ^ key0[3:0];
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         32        32         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt/AddRoundKey2 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                   new_state[15-0]           1           1      100.00 
+
+Total Node Count     =         16 
+Toggled Node Count   =         16 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (32 of 32 bins)
+
+=================================================================================
+=== Instance: /S_AES_Top/encrypt
+=== Design Unit: work.S_AES_Ecryption
+=================================================================================
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       2         2         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /S_AES_Top/encrypt --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File S_AES_Ecryption.sv
+    33              1                          1     
+    34              1                          1     
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        320       320         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /S_AES_Top/encrypt --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                  ciphertext[15-0]           1           1      100.00 
+                                        key1[15-0]           1           1      100.00 
+                                        key2[15-0]           1           1      100.00 
+                      out_Mix_Columns_round1[15-0]           1           1      100.00 
+                           out_NibSub_round1[15-0]           1           1      100.00 
+                           out_NibSub_round2[15-0]           1           1      100.00 
+                              out_add_round0[15-0]           1           1      100.00 
+                              out_add_round1[15-0]           1           1      100.00 
+                            out_shift_round1[15-0]           1           1      100.00 
+                            out_shift_round2[15-0]           1           1      100.00 
+
+Total Node Count     =        160 
+Toggled Node Count   =        160 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (320 of 320 bins)
+
+
+Total Coverage By Instance (filtered view): 99.09%
+
