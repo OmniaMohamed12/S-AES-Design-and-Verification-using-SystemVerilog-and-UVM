@@ -2,7 +2,7 @@
 Simplified Advanced Encryption Standard (S-AES) Design and Verification Using System Verilog and UVM.
 
 ## UVM Architecture
-![s-aes uvm env - Page 1](https://github.com/OmniaMohamed12/S-AES-Design-and-Verification-using-SystemVerilog-and-UVM/assets/110364388/8b0899ed-e163-413f-90ce-f50fecc09511)
+![Copy of s aes uvm env - Page 1](https://github.com/OmniaMohamed12/S-AES-Design-and-Verification-using-SystemVerilog-and-UVM/assets/110364388/780c6516-966e-48be-88a7-e301bc2dcbd3)
 
 ## Coverage Results
 
