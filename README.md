@@ -14,7 +14,6 @@ Simplified Advanced Encryption Standard (S-AES) Design and Verification Using Sy
  
 ![image](https://github.com/OmniaMohamed12/S-AES-Design-and-Verification-using-SystemVerilog-and-UVM/assets/110364388/08d27a24-9756-45ab-a1e4-c49ca0313a63)
 
-Detailed coverage reports can be found in the `sim` directory, specifically in the `code_cov_report.txt` file and `functional_cov_report.txt` file.
 
 ## Compilation and Simulation Steps
 
